@@ -118,7 +118,6 @@
                 }
               ]
         },
-
         {
             "name": "[variables('networkInterfaceName')]",
             "type": "Microsoft.Network/networkInterfaces",
