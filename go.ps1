@@ -6,6 +6,7 @@ $parameters = @{
     virtualMachineName = 'mazd-dbmi01'
     virtualNetworkName = 'microsegmentation-vnet'
     subnetName = 'data-paas'
+    networkSecurityGroup = 'nsgManagedInstance634'
     administratorLogin  = 'adminuser'
     administratorLoginPassword  = '!Qazxdr5!Qazxdr5'
 }

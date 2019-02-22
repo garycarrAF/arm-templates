@@ -5,20 +5,53 @@ $resourceGroupName = $parameters['resourceGroupName']
 $virtualMachineName = $parameters['virtualMachineName']
 $virtualNetworkName = $parameters['virtualNetworkName']
 $managementSubnetName = $parameters['subnetName']
+$managementSecurityGroup = $parameters['networkSecurityGroup']
 $administratorLogin  = $parameters['administratorLogin']
 $administratorLoginPassword  = $parameters['administratorLoginPassword']
 
 $scriptUrlBase = $args[1]
 
-if($virtualMachineName -eq '' -or $virtualMachineName -eq $null) {
-    $virtualMachineName = 'Jumpbox'
-    Write-Host "VM Name: 'Jumpbox'." -ForegroundColor Green
+$defaultName = 'Jumpbox'
+
+if($subscriptionId -eq '' -or $subscriptionId -eq $null) {
+	Write-Host "You need to include the subscriptionId in the parameters." -ForegroundColor Red
+	Break;
 }
 
-if($managementSubnetName -eq '' -or $managementSubnetName -eq $null) {
-    $managementSubnetName = 'Management'
-    Write-Host "Using subnet 'Management' to deploy jumpbox VM." -ForegroundColor Green
+if($resourceGroupName -eq '' -or $resourceGroupName -eq $null) {
+	Write-Host "You need to include the resourceGroupName in the parameters." -ForegroundColor Red
+	Break;
 }
+
+if($administratorLogin -eq '' -or $administratorLogin -eq $null) {
+	Write-Host "You need to include the administratorLogin in the parameters." -ForegroundColor Red
+	Break;
+}
+
+if($administratorLoginPassword -eq '' -or $administratorLoginPassword -eq $null) {
+	Write-Host "You need to include the administratorLoginPassword in the parameters." -ForegroundColor Red
+	Break;
+}
+
+if($virtualMachineName -eq '' -or $virtualMachineName -eq $null) {
+    $virtualMachineName = $defaultName+'-vm'
+}
+Write-Host "VM Name: $virtualMachineName." -ForegroundColor Green
+
+if($virtualNetworkName -eq '' -or $virtualNetworkName -eq $null) {
+    $virtualNetworkName = $defaultName+'-vnet'
+}
+Write-Host "VNet Name: $virtualNetworkName." -ForegroundColor Green
+
+if($managementSubnetName -eq '' -or $managementSubnetName -eq $null) {
+    $managementSubnetName = $defaultName+'-subnet'
+}
+Write-Host "Using subnet $managementSubnetName to deploy jumpbox VM." -ForegroundColor Green
+
+if($managementSecurityGroup -eq '' -or $managementSecurityGroup -eq $null) {
+    $managementSecurityGroup = $defaultName+'-nsg'
+}
+Write-Host "Using network security group $managementSecurityGroup to deploy jumpbox VM." -ForegroundColor Green
 
 function VerifyPSVersion
 {
@@ -202,13 +235,14 @@ Write-Host "Starting deployment..."
 $templateParameters = @{
     virtualNetworkName = $virtualNetworkName
     managementSubnetName  = $managementSubnetName
+	managementSecurityGroup = $mangenetworkSecurityGroup
     virtualMachineName  = $virtualMachineName
     administratorLogin  = $administratorLogin
     administratorLoginPassword  = $administratorLoginPassword
+    scriptUrlBase  = $scriptUrlBase
 }
 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateUri ($scriptUrlBase+'/sql-mi-deploy.json?t='+ [DateTime]::Now.Ticks) -TemplateParameterObject $templateParameters
 
 Write-Host "Deployment completed."
-	
 			
