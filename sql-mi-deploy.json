@@ -54,8 +54,8 @@
 	},
     "variables": {
         "virtualMachineSize": "Standard_B2s",
-        "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic0']",
-        "publicIPAddressName": "[concat(parameters('virtualMachineName'),'-pip']",
+        "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic0')]",
+        "publicIPAddressName": "[concat(parameters('virtualMachineName'),'-pip')]",
         "networkSecurityGroupName": "[parameters('managementSecurityGroup')]",
         "scriptFileUri": "[concat(parameters('scriptUrlBase'),'/installSSMS.ps1')]"
     },
