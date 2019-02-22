@@ -174,13 +174,6 @@ function CalculateVpnClientAddressPoolPrefix
 VerifyPSVersion
 EnsureLogin
 SelectSubscriptionId -subscriptionId $subscriptionId
-    }
-
-}
-
-VerifyPSVersion
-EnsureLogin
-SelectSubscriptionId -subscriptionId $subscriptionId
 
 $virtualNetwork = LoadVirtualNetwork -resourceGroupName $resourceGroupName -virtualNetworkName $virtualNetworkName
 
