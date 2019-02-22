@@ -44,6 +44,12 @@
             "metadata": {
                 "description": "VNet security group."
             }
+        },
+        "scriptUrlBase": {
+            "type": "string",
+            "metadata": {
+                "description": "Script location."
+            }
         }
 	},
     "variables": {
