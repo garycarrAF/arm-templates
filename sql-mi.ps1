@@ -235,7 +235,7 @@ Write-Host "Starting deployment..."
 $templateParameters = @{
     virtualNetworkName = $virtualNetworkName
     managementSubnetName  = $managementSubnetName
-	managementSecurityGroup = $mangenetworkSecurityGroup
+	managementSecurityGroup = $managementSecurityGroup
     virtualMachineName  = $virtualMachineName
     administratorLogin  = $administratorLogin
     administratorLoginPassword  = $administratorLoginPassword
