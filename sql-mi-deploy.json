@@ -48,7 +48,7 @@
 	},
     "variables": {
         "virtualMachineSize": "Standard_B2s",
-        "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic']",
+        "networkInterfaceName": "[concat(parameters('virtualMachineName'),'-nic0']",
         "publicIPAddressName": "[concat(parameters('virtualMachineName'),'-pip']",
         "networkSecurityGroupName": "[parameters('managementSecurityGroup')]",
         "scriptFileUri": "[concat(parameters('scriptUrlBase'),'/installSSMS.ps1')]"
@@ -148,37 +148,6 @@
                         }
                     }
                 ],
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
-                }
-            }
-        },
-        {
-            "name": "[variables('publicIpAddressName')]",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2017-08-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "publicIPAllocationMethod": "Dynamic"
-            },
-            "sku": {
-                "name": "Basic"
-            }
-        },
-        {
-            "name": "[variables('networkSecurityGroupName')]",
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2018-01-01",
-            "location": "[parameters('location')]",
-            "properties": {
-                "securityRules": [
-                    {
-                        "name": "RDP",
-                        "properties": {
-                            "priority": 300,
-                            "protocol": "Tcp",
-                            "access": "Allow",
-                            "direction": "Inbound",
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
                 }
