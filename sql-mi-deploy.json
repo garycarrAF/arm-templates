@@ -264,7 +264,7 @@
                             ],
                             "sourceAddressPrefixes": [],
                             "destinationAddressPrefixes": [],
-                            "destinationPortRange": "[parameters('networkSecurityGroups_nsgManagedInstance634_destinationPortRange')]"
+                            "destinationPortRange": ""
                         }
                     },
                     {
@@ -288,7 +288,7 @@
                             ],
                             "sourceAddressPrefixes": [],
                             "destinationAddressPrefixes": [],
-                            "destinationPortRange": "[parameters('networkSecurityGroups_nsgManagedInstance634_destinationPortRange_1')]"
+                            "destinationPortRange": ""
                         }
                     },
                     {
